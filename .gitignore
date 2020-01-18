@@ -138,3 +138,5 @@ dmypy.json
 certs/
 
 **/migrations
+
+k8s/secrets.yaml
