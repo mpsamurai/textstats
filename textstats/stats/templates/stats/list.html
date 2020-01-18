@@ -1,0 +1,34 @@
+{% extends 'stats/base.html' %}
+
+{% block content %}
+    <h1>文書リスト</h1>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>文書</th>
+            <th>状態</th>
+            <th>アップロード日時</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for t in texts %}
+            <tr>
+                <td><a href="{{ t.get_absolute_url }}">{{ t.body|truncatechars:20 }}</a></td>
+                <td>{{ t.get_status_display }}</td>
+                <td>{{ t.created }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% if texts.has_previous %}
+        <a class="btn btn-primary" href="{% url 'stats:list' %}?p={{ texts.previous_page_number }}">前へ</a>
+    {% else %}
+        <button class="btn btn-primary disabled">前へ</button>
+    {% endif %}
+    {% if texts.has_next %}
+        <a class="btn btn-primary" href="{% url 'stats:list' %}?p={{ texts.next_page_number }}">次へ</a>
+    {% else %}
+        <button class="btn btn-primary disabled">次へ</button>
+    {% endif %}
+     ({{ texts.number }} / {{ texts.paginator.num_pages  }})
+{% endblock %}

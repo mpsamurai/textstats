@@ -1,0 +1,12 @@
+{% extends 'stats/base.html' %}
+
+{% block content %}
+    <h1>文書アップロード</h1>
+    <form method="post">
+        {% csrf_token %}
+        <table class="table">
+            {{ form.as_table }}
+        </table>
+        <input type="submit" class="btn btn-primary" value="アップロード">
+    </form>
+{% endblock %}

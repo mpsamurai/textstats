@@ -1,0 +1,26 @@
+{% extends 'stats/base.html' %}
+
+{% block content %}
+    <h1>文書</h1>
+    {{ text.body|truncatechars:200 }}
+
+    <h1>分析結果</h1>
+    <table class="table">
+        <thead>
+        <tr>
+            <td>ランク</td>
+            <td>名詞 (個数)</td>
+            <td>グラフ</td>
+        </tr>
+        </thead>
+        <tbody>
+        {% for k, v in graph.items %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ k }} ({{ v.count }})</td>
+                <td>{{ v.bar }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
